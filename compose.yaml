@@ -1,0 +1,24 @@
+version: "3.9"
+   
+volumes:
+  pgdata:
+
+services:
+  db:
+    image: hyperledger/explorer-db:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./explorerdb_dump.sql:/restore/db_dump.sql
+    container_name: explorerdb
+    hostname: explorerdb
+    environment:
+      - DATABASE_DATABASE=fabricexplorer
+      - DATABASE_USERNAME=hppoc
+      - DATABASE_PASSWORD=password
+    healthcheck:
+      test: "pg_isready -h localhost -p 5432 -q -U postgres"
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "5432:5432"
