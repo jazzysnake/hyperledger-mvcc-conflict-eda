@@ -8,7 +8,8 @@ services:
     image: hyperledger/explorer-db:latest
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./explorerdb_dump.sql:/restore/db_dump.sql
+      - ./data:/opt/data
+      - ./restore.sh:/opt/restore.sh
     container_name: explorerdb
     hostname: explorerdb
     environment:
