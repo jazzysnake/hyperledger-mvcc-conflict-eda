@@ -3,3 +3,4 @@ progress
 .ipynb_checkpoints
 .idea
 notes.txt
+data/*
