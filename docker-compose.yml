@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
    
 volumes:
   pgdata:
@@ -23,3 +23,16 @@ services:
       retries: 5
     ports:
       - "5432:5432"
+  graph-db:
+    image: neo4j:latest
+    volumes:
+      - $HOME/neo4j/data:/data
+      - $HOME/neo4j/logs:/logs 
+      - ./data:/var/lib/neo4j/import:ro
+    container_name: neo4j
+    hostname: neo4j
+    environment:
+      - NEO4J_AUTH=none
+    ports:
+        - "7474:7474"
+        - "7687:7687"
