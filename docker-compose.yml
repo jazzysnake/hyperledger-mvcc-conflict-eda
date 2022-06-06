@@ -28,7 +28,7 @@ services:
     volumes:
       - $HOME/neo4j/data:/data
       - $HOME/neo4j/logs:/logs 
-      - ./data:/var/lib/neo4j/import:ro
+      - ./data:/var/lib/neo4j/import
     container_name: neo4j
     hostname: neo4j
     environment:

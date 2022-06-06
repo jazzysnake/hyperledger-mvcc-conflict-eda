@@ -11,7 +11,7 @@ else
 	echo "Deleting old db volume"
 	docker volume rm $(docker volume ls | grep "pgdata"  | awk '{print $2}')
 	echo "Starting new container"
-	docker-compose up -d
+	docker-compose up -d db
 	STATUS=`docker ps --format "{{.Image}} {{.Status}}" | grep "hyperledger/explorer-db" | awk '{print $NF}' | awk '{$1=$1};1'`
 	while [ `echo $STATUS | grep "healthy" | wc -l` -ne 1 ]
 	do
